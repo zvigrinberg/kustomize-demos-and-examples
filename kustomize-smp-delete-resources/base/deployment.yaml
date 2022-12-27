@@ -21,5 +21,9 @@ spec:
         name: ubi
         command: ["bash", "-c" , "sleep infinity" ]
         envFrom:
-          - secretRef:
-              name: some-secret-ref
+          - configMapRef:
+              name: first-configmap
+          - configMapRef:
+              name: second-configmap              
+
+
