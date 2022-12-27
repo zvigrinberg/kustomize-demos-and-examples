@@ -7,5 +7,5 @@ resources:
 - ./base  
 
 commonLabels:
-  layer: secrets-generation-demo
+  layer: smp-delete-resource-demo
 
