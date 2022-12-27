@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    component: apiserver
+    provider: kubernetes
+  name: kubernetes
+  namespace: my-namespace
+spec:
+  port:
+    targetPort: https
+  to:
+    kind: "Service"
+    name: kubernetes
+    weight: 100

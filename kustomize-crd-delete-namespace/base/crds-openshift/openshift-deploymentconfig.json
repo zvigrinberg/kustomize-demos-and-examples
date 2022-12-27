@@ -1,0 +1,35 @@
+{
+	"DeploymentConfig": {
+		"Schema": {
+			"description": "This is a dummy OpenAPI json CRD description to make kustomize tool to recognize and patch OpenShift DeploymentConfig resources",
+			"properties": {
+				"apiVersion": {
+					"type": "string"
+				},
+				"kind": {
+					"type": "string"
+				},
+				"metadata": {
+					"$ref": "k8s.io/apimachinery/pkg/apis/meta/v1.ObjectMeta"
+				},
+				"spec": {
+					"$ref": "DeploymentConfigSpec"
+				}
+			}
+		}
+	},
+	"DeploymentConfigSpec": {
+		"Schema": {
+			"properties": {
+				"template/spec/volumes/configMap": {
+					"x-kubernetes-object-ref-api-version": "v1",
+					"x-kubernetes-object-ref-kind": "ConfigMap"
+				},
+				"template/spec/containers/envFrom/configMapRef": {
+					"x-kubernetes-object-ref-api-version": "v1",
+					"x-kubernetes-object-ref-kind": "ConfigMap"
+				}
+			}
+		}
+	}
+}

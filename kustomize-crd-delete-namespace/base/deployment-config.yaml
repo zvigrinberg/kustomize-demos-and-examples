@@ -1,0 +1,29 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: dc-test
+  namespace: myNamespace
+spec:
+  replicas: 1
+  selector:
+    deployment-config.name: dc-test
+  strategy:
+    resources: {}
+  template:
+    metadata:
+      labels:
+        deployment-config.name: dc-test
+    spec:
+      containers:
+      - image: busybox
+        name: default-container
+        command: ["sleep"]
+        args:
+          - "infinity"
+        resources: {}
+        envFrom:
+          - configMapRef:
+              name: dc-config
+  test: false
+  triggers:
+    - type: ConfigChange

@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment-config.yaml
+- route.yaml
+crds:
+  - crds-openshift/openshift-deploymentconfig.json
+  - crds-openshift/openshift-route.json
+configMapGenerator:
+  - name: dc-config
+    literals:
+      - hello=world
+      - user=john
+      - password=changeme
+      - newone=yes
+      - oldone=no
+      - important=value
+      - test=debug
+patches:
+  - patch: |-
+      - op: remove
+        path: /metadata/namespace
+    target:
+      kind: DeploymentConfig      
+  - patch: |-
+      - op: remove
+        path: /metadata/namespace
+    target:
+      kind: Route      
