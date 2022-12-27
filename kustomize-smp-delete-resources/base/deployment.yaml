@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app
+  name: app
+  annotations:
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - image: ubi8/ubi:8.5-226
+        name: ubi
+        command: ["bash", "-c" , "sleep infinity" ]
+        envFrom:
+          - secretRef:
+              name: some-secret-ref

@@ -1,0 +1,34 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  creationTimestamp: "2022-11-19T15:13:50Z"
+  name: gitlab-operator-kubernetes.v0.13.4
+  namespace: gitlab-system
+  ownerReferences:
+  - apiVersion: operators.coreos.com/v2
+    blockOwnerDeletion: false
+    controller: true
+    kind: OperatorCondition
+    name: gitlab-operator-kubernetes.v0.13.4
+    uid: bd33c871-1c88-4dbf-8f14-d17576b3a8d2
+  resourceVersion: "164854964"
+  uid: 93faeea9-2e35-4695-ac7a-6c36196207e7
+  annotations:
+    saasiRemoveResource: true
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: gitlab-operator-kubernetes.v0.13.4
+subjects:
+- kind: ServiceAccount
+  name: gitlab-app-anyuid
+- kind: ServiceAccount
+  name: gitlab-app-nonroot
+- kind: ServiceAccount
+  name: gitlab-manager
+- kind: ServiceAccount
+  name: gitlab-nginx-ingress
+- kind: ServiceAccount
+  name: gitlab-manager
+- kind: ServiceAccount
+  name: gitlab-nginx-ingress
